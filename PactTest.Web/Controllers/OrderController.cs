@@ -42,7 +42,7 @@ namespace PactTest.Web.Controllers
         {
             var result = _store.Add(order);
 
-            return CreatedAtAction(nameof(GetById), result.Id);
+            return CreatedAtAction(nameof(GetById), new { result.Id }, result);
         }   
         
         [HttpPut("{id}")]
@@ -58,7 +58,7 @@ namespace PactTest.Web.Controllers
                 return NotFound();
             }
 
-            return RedirectToAction(nameof(GetById), result.Id);
+            return RedirectToAction(nameof(GetById), new { result.Id });
         }       
         
         [HttpDelete("{id}")]
