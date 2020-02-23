@@ -36,6 +36,9 @@ namespace PactTest.CommandLine.Tests
         public void Dispose()
         {
             PactBuilder.Build();
+            
+            var publisher = new PactPublisher("http://localhost:9292");
+            publisher.PublishToBroker(@"..\..\..\pacts\commandline-orderapi.json", "1.0.0", new [] { "master" });
         }
     }
 }

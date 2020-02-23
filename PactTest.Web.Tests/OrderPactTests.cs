@@ -38,6 +38,9 @@ namespace PactTest.Web.Tests
         {
             var config = new PactVerifierConfig
             {
+                ProviderVersion = "1.0.0",
+                PublishVerificationResults = true,
+                
                 Outputters = new List<IOutput> { new XUnitOutput(_outputHelper) },
                 Verbose = true
             };
@@ -47,8 +50,7 @@ namespace PactTest.Web.Tests
                 .ProviderState($"{_pactServiceUri}/provider-states")
                 .ServiceProvider("OrderApi", _providerUri)
                 
-                .HonoursPactWith("CommandLine")
-                .PactUri(@"..\..\..\..\PactTest.CommandLine.Tests\pacts\commandline-orderapi.json")
+                .PactBroker("http://localhost:9292", enablePending: true)
                 
                 .Verify();
         }
