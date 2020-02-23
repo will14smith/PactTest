@@ -19,18 +19,18 @@
       "response": {
         "status": 200,
         "headers": {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json; charset=utf-8"
         },
         "body": [
           {
-            "id": 2041175501,
-            "person": "string_1613858733",
-            "item": "string_1627583427"
+            "id": 1,
+            "person": "person1",
+            "item": "item1"
           },
           {
-            "id": 1487326767,
-            "person": "string_1548100671",
-            "item": "string_639655624"
+            "id": 2,
+            "person": "person2",
+            "item": "item2"
           }
         ]
       }

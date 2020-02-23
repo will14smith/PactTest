@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PactTest.Web.Models
 {
@@ -8,7 +9,7 @@ namespace PactTest.Web.Models
 
         public IReadOnlyCollection<Order> GetAll()
         {
-            return _orders;
+            return _orders.ToList();
         }
         
         public Order GetById(int id)

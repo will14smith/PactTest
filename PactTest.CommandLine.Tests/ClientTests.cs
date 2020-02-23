@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using AutoFixture;
-using AutoFixture.Kernel;
 using PactNet.Mocks.MockHttpService;
 using PactNet.Mocks.MockHttpService.Models;
 using Xunit;
@@ -12,8 +10,6 @@ namespace PactTest.CommandLine.Tests
 {
     public class ClientTests : IClassFixture<OrderConsumerPact>
     {
-        private readonly IFixture _fixture = new DeterministicFixture(10);
-
         private readonly IMockProviderService _mockProviderService;
 
         private readonly Client _sut;
@@ -33,8 +29,8 @@ namespace PactTest.CommandLine.Tests
         [Fact]
         public async Task GetAll_ShouldGetAllItemsFromApi()
         {
-            var order1 = _fixture.Create<Order>();
-            var order2 = _fixture.Create<Order>();
+            var order1 = new Order { Id = 1, Person = "person1", Item = "item1" };
+            var order2 = new Order { Id = 2, Person = "person2", Item = "item2" };
             
             _mockProviderService
                 .Given("There are 2 orders in the store")
@@ -53,7 +49,7 @@ namespace PactTest.CommandLine.Tests
                     Status = 200,
                     Headers = new Dictionary<string, object>
                     {
-                        { "Content-Type", "application/json" }
+                        { "Content-Type", "application/json; charset=utf-8" }
                     },
                     Body = new []
                     {
