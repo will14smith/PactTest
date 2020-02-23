@@ -25,12 +25,14 @@
           {
             "id": 1,
             "person": "person1",
-            "item": "item1"
+            "item": "item1",
+            "shipped": true
           },
           {
             "id": 2,
             "person": "person2",
-            "item": "item2"
+            "item": "item2",
+            "shipped": false
           }
         ]
       }

@@ -52,7 +52,7 @@ namespace PactTest.CommandLine
         {
             var content = new ByteArrayContent(JsonSerializer.SerializeToUtf8Bytes(model));
             content.Headers.ContentType = JsonMediaType;
-            var request = new HttpRequestMessage(HttpMethod.Get, "/order") { Content = content };
+            var request = new HttpRequestMessage(HttpMethod.Post, "/order") { Content = content };
             request.Headers.Accept.Add(JsonMediaType);
             
             using var response = await _httpClient.SendAsync(request);
@@ -65,7 +65,7 @@ namespace PactTest.CommandLine
         {
             var content = new ByteArrayContent(JsonSerializer.SerializeToUtf8Bytes(model));
             content.Headers.ContentType = JsonMediaType;
-            var request = new HttpRequestMessage(HttpMethod.Get, $"/order/{id}") { Content = content };
+            var request = new HttpRequestMessage(HttpMethod.Put, $"/order/{id}") { Content = content };
             request.Headers.Accept.Add(JsonMediaType);
 
             using var response = await _httpClient.SendAsync(request);
@@ -74,6 +74,7 @@ namespace PactTest.CommandLine
                 throw new Exception($"Invalid request: {response.StatusCode} {response.ReasonPhrase}");
             }
 
+  
             return await GetByIdAsync(id);
         }  
         

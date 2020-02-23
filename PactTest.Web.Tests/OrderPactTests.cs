@@ -13,10 +13,10 @@ namespace PactTest.Web.Tests
 {
     public class OrderPactTests : IDisposable
     {
-        private string _providerUri;
-        private string _pactServiceUri;
-        private IWebHost _webHost;
-        private ITestOutputHelper _outputHelper;
+        private readonly string _providerUri;
+        private readonly string _pactServiceUri;
+        private readonly IWebHost _webHost;
+        private readonly ITestOutputHelper _outputHelper;
 
         public OrderPactTests(ITestOutputHelper output)
         {

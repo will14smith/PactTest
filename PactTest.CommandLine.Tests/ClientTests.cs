@@ -29,8 +29,8 @@ namespace PactTest.CommandLine.Tests
         [Fact]
         public async Task GetAll_ShouldGetAllItemsFromApi()
         {
-            var order1 = new Order { Id = 1, Person = "person1", Item = "item1" };
-            var order2 = new Order { Id = 2, Person = "person2", Item = "item2" };
+            var order1 = new Order { Id = 1, Person = "person1", Item = "item1", Shipped = true };
+            var order2 = new Order { Id = 2, Person = "person2", Item = "item2", Shipped = false };
             
             _mockProviderService
                 .Given("There are 2 orders in the store")

@@ -122,8 +122,9 @@ namespace PactTest.CommandLine
             var id = int.Parse(Prompt("Enter order id"));
             var person = Prompt("Enter person  ");
             var item = Prompt("Enter item    ");
+            var shipped = bool.Parse(Prompt("Enter shipped "));
             
-            var order = await client.UpdateAsync(id, new OrderUpdate { Person = person, Item = item });
+            var order = await client.UpdateAsync(id, new OrderUpdate { Person = person, Item = item, Shipped = shipped });
             PrintOrder(order);
         }   
         private static async Task DeleteOrder(IClient client)
@@ -138,7 +139,7 @@ namespace PactTest.CommandLine
 
         private static void PrintOrder(Order order)
         {
-            Console.WriteLine($"Id: {order.Id.ToString().PadLeft(5)} Person: {order.Person.PadRight(20)} Item: {order.Item.PadRight(20)}");
+            Console.WriteLine($"Id: {order.Id.ToString().PadLeft(5)} Person: {order.Person.PadRight(20)} Item: {order.Item.PadRight(20)} Shipped: {order.Shipped}");
         }
         
         private static void PrintHelp()
