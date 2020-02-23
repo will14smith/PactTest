@@ -33,8 +33,8 @@ namespace PactTest.Web.Tests.Middleware
                             store.Delete(order.Id);
                         }
                         
-                        store.Add(new Order { Person = "person1", Item = "item1" });
-                        store.Add(new Order { Person = "person2", Item = "item2" });
+                        store.Add(new Order { Person = "person1", Item = "item1", Shipped = true });
+                        store.Add(new Order { Person = "person2", Item = "item2", Shipped = false });
                     }
                 }
             };

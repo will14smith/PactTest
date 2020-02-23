@@ -38,7 +38,7 @@ namespace PactTest.Web.Tests
         {
             var config = new PactVerifierConfig
             {
-                ProviderVersion = "1.0.0",
+                ProviderVersion = "1.0.1",
                 PublishVerificationResults = true,
                 
                 Outputters = new List<IOutput> { new XUnitOutput(_outputHelper) },
