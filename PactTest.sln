@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PactTest.Web.Tests", "PactT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PactTest.CommandLine", "PactTest.CommandLine\PactTest.CommandLine.csproj", "{7FFA76B1-3883-46F8-9307-B1534D3F3A55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PactTest.CommandLine.Tests", "PactTest.CommandLine.Tests\PactTest.CommandLine.Tests.csproj", "{A691551B-8042-4D2B-B9E9-CAD0012C8DAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{7FFA76B1-3883-46F8-9307-B1534D3F3A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FFA76B1-3883-46F8-9307-B1534D3F3A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FFA76B1-3883-46F8-9307-B1534D3F3A55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A691551B-8042-4D2B-B9E9-CAD0012C8DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A691551B-8042-4D2B-B9E9-CAD0012C8DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A691551B-8042-4D2B-B9E9-CAD0012C8DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A691551B-8042-4D2B-B9E9-CAD0012C8DAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

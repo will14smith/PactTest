@@ -13,7 +13,8 @@ namespace PactTest.CommandLine
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
-
+        private static MediaTypeWithQualityHeaderValue JsonMediaType = MediaTypeWithQualityHeaderValue.Parse("application/json");    
+        
         private readonly HttpClient _httpClient;
         
         public Client(HttpClient httpClient)
@@ -23,7 +24,10 @@ namespace PactTest.CommandLine
         
         public async Task<IReadOnlyCollection<Order>> GetAllAsync()
         {
-            using var response = await _httpClient.GetAsync("/order");
+            var request = new HttpRequestMessage(HttpMethod.Get, "/order");
+            request.Headers.Accept.Add(JsonMediaType);
+            
+            using var response = await _httpClient.SendAsync(request);
             await using var responseStream = await response.Content.ReadAsStreamAsync();
             
             return await JsonSerializer.DeserializeAsync<List<Order>>(responseStream, JsonOptions);
@@ -31,7 +35,10 @@ namespace PactTest.CommandLine
         
         public async Task<Order> GetByIdAsync(int id)
         {
-            using var response = await _httpClient.GetAsync($"/order/{id}");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/order/{id}");
+            request.Headers.Accept.Add(JsonMediaType);
+            
+            using var response = await _httpClient.SendAsync(request);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"Invalid request: {response.StatusCode} {response.ReasonPhrase}");
@@ -44,9 +51,11 @@ namespace PactTest.CommandLine
         public async Task<Order> AddAsync(OrderAdd model)
         {
             var content = new ByteArrayContent(JsonSerializer.SerializeToUtf8Bytes(model));
-            content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+            content.Headers.ContentType = JsonMediaType;
+            var request = new HttpRequestMessage(HttpMethod.Get, "/order") { Content = content };
+            request.Headers.Accept.Add(JsonMediaType);
             
-            using var response = await _httpClient.PostAsync("/order", content);
+            using var response = await _httpClient.SendAsync(request);
             await using var responseStream = await response.Content.ReadAsStreamAsync();
             
             return await JsonSerializer.DeserializeAsync<Order>(responseStream, JsonOptions);
@@ -55,9 +64,11 @@ namespace PactTest.CommandLine
         public async Task<Order> UpdateAsync(int id, OrderUpdate model)
         {
             var content = new ByteArrayContent(JsonSerializer.SerializeToUtf8Bytes(model));
-            content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+            content.Headers.ContentType = JsonMediaType;
+            var request = new HttpRequestMessage(HttpMethod.Get, $"/order/{id}") { Content = content };
+            request.Headers.Accept.Add(JsonMediaType);
 
-            using var response = await _httpClient.PutAsync($"/order/{id}", content);
+            using var response = await _httpClient.SendAsync(request);
             if ((int)response.StatusCode < 300 || (int)response.StatusCode >= 400)
             {
                 throw new Exception($"Invalid request: {response.StatusCode} {response.ReasonPhrase}");

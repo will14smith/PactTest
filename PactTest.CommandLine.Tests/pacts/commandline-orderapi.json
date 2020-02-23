@@ -1,0 +1,44 @@
+{
+  "consumer": {
+    "name": "CommandLine"
+  },
+  "provider": {
+    "name": "OrderApi"
+  },
+  "interactions": [
+    {
+      "description": "A GET request to list all the orders",
+      "providerState": "There are 2 orders in the store",
+      "request": {
+        "method": "get",
+        "path": "/order",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": [
+          {
+            "id": 2041175501,
+            "person": "string_1613858733",
+            "item": "string_1627583427"
+          },
+          {
+            "id": 1487326767,
+            "person": "string_1548100671",
+            "item": "string_639655624"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

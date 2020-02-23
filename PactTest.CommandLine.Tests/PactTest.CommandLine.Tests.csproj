@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoFixture" Version="4.11.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+        <PackageReference Include="xunit" Version="2.4.0" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+        <PackageReference Include="coverlet.collector" Version="1.0.1" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
+        <PackageReference Include="PactNet.Windows" Version="2.5.1" />
+    </ItemGroup>
+    <ItemGroup Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' and '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)'=='X86'">
+        <PackageReference Include="PactNet.Linux.x86" Version="2.5.1" />
+    </ItemGroup>
+    <ItemGroup Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' and '$([System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture)'=='X64'">
+        <PackageReference Include="PactNet.Linux.x64" Version="2.5.1" />
+    </ItemGroup>
+    <ItemGroup Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))'">
+        <PackageReference Include="PactNet.OSX" Version="2.5.1" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\PactTest.CommandLine\PactTest.CommandLine.csproj" />
+    </ItemGroup>    
+
+</Project>
